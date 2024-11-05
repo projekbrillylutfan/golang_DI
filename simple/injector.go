@@ -5,6 +5,8 @@ package simple
 
 import (
 	"github.com/google/wire"
+	"io"
+	"os"
 )
 
 func InitializedService(isError bool) (*SimpleService, error) {
@@ -32,39 +34,39 @@ func InitializedFooBarService() *FooBarService {
 	return nil
 }
 
-// // Salah
-// //func InitializedHelloService() *HelloService {
-// //	wire.Build(NewHelloService, NewSayHelloImpl)
-// //	return nil
-// //}
+// Salah
+//func InitializedHelloService() *HelloService {
+//	wire.Build(NewHelloService, NewSayHelloImpl)
+//	return nil
+//}
 
-// var helloSet = wire.NewSet(
-// 	NewSayHelloImpl,
-// 	wire.Bind(new(SayHello), new(*SayHelloImpl)),
-// )
+var helloSet = wire.NewSet(
+	NewSayHelloImpl,
+	wire.Bind(new(SayHello), new(*SayHelloImpl)),
+)
 
-// func InitializedHelloService() *HelloService {
-// 	wire.Build(helloSet, NewHelloService)
-// 	return nil
-// }
+func InitializedHelloService() *HelloService {
+	wire.Build(helloSet, NewHelloService)
+	return nil
+}
 
-// func InitializedFooBar() *FooBar {
-// 	wire.Build(NewFoo, NewBar, wire.Struct(new(FooBar), "*"))
-// 	return nil
-// }
+func InitializedFooBar() *FooBar {
+	wire.Build(NewFoo, NewBar, wire.Struct(new(FooBar), "*"))
+	return nil
+}
 
-// var fooValue = &Foo{}
-// var barValue = &Bar{}
+var fooValue = &Foo{}
+var barValue = &Bar{}
 
-// func InitializedFooBarUsingValue() *FooBar {
-// 	wire.Build(wire.Value(fooValue), wire.Value(barValue), wire.Struct(new(FooBar), "*"))
-// 	return nil
-// }
+func InitializedFooBarUsingValue() *FooBar {
+	wire.Build(wire.Value(fooValue), wire.Value(barValue), wire.Struct(new(FooBar), "*"))
+	return nil
+}
 
-// func InitializedReader() io.Reader {
-// 	wire.Build(wire.InterfaceValue(new(io.Reader), os.Stdin))
-// 	return nil
-// }
+func InitializedReader() io.Reader {
+	wire.Build(wire.InterfaceValue(new(io.Reader), os.Stdin))
+	return nil
+}
 
 // func InitializedConfiguration() *Configuration {
 // 	wire.Build(
