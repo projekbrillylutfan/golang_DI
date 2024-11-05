@@ -68,15 +68,15 @@ func InitializedReader() io.Reader {
 	return nil
 }
 
-// func InitializedConfiguration() *Configuration {
-// 	wire.Build(
-// 		NewApplication,
-// 		wire.FieldsOf(new(*Application), "Configuration"),
-// 	)
-// 	return nil
-// }
+func InitializedConfiguration() *Configuration {
+	wire.Build(
+		NewApplication,
+		wire.FieldsOf(new(*Application), "Configuration"),
+	)
+	return nil
+}
 
-// func InitializedConnection(name string) (*Connection, func()) {
-// 	wire.Build(NewConnection, NewFile)
-// 	return nil, nil
-// }
+func InitializedConnection(name string) (*Connection, func()) {
+	wire.Build(NewConnection, NewFile)
+	return nil, nil
+}
